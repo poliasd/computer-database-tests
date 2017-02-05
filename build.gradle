@@ -1,0 +1,46 @@
+apply plugin: 'java'
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testRuntime
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+
+dependencies {
+	testCompile( 
+		'info.cukes:cucumber-java:1.2.5',
+		'info.cukes:cucumber-junit:1.2.5',
+		'org.seleniumhq.selenium:selenium-java:2.53.1',
+		'junit:junit:4.12',
+		'io.github.bonigarcia:webdrivermanager:1.5.1'
+    )
+}
+
+test {
+    useJUnit()
+    systemProperty "cucumber.options", "--tags @Acceptance"
+    systemProperty "BROWSER", "chrome"
+    systemProperty "APP_URL", "http://computer-database.herokuapp.com/computers"
+    systemProperties System.getProperties()
+    ignoreFailures = true
+}
+
+task cucumber() {
+    dependsOn assemble, compileTestJava
+    doLast {
+        javaexec {
+            main = "cucumber.api.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = ['-f', 'json:target/cucumber.json', '--glue', 'com.polina.ui.tests.steps', 'src/test/ressources', '-t', tagOr, '-t', tagAnd]
+        }
+    }
+}
+
+
