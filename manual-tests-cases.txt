@@ -1,0 +1,161 @@
+Test Cases
+
+Test 1
+Create Computer 
+Prerequisite: Application is open
+1)I press the button "Add a new computer"
+2)I enter "Computer Test 1" in the field "Computer name"
+3)I enter "2017-02-04" in the field "Introduced date"
+4)I enter "2018-03-14" in the field "Discontinued date"
+4)I choose "Sony " from "Company" dropdown
+5)I press the button "Create this computer"
+Expected results:
+I see a message "Done! Computer Computer Test 1 has been created"
+When I filter by Computer Test 1
+I see Computer Test 1 2017-02-04 2018-03-14  Sony in the table
+
+Test 2
+View Computer 
+Prerequisite: Application is open
+"Computer Test 1" is created
+1)I filter by "Computer Test 1"
+2)I click on "Computer Test 1"
+3)I see "Computer Test 1" in the field "Computer name"
+4)I see "2017-02-04 " in the field "Introduced date"
+5)I see "2018-03-14" in the field "Discontinued date"
+6)I choose "Sony " from "Company" dropdown
+7)I press the button "Cancel"
+Expected results:
+I can see the table with computers
+
+Test 3	
+Edit Computer
+Prerequisite: Application is open
+"Computer Test 1" is created
+1) I filter by "Computer Test 1"
+2) I click on "Computer Test 1"
+3) I enter "Computer Updated 1 " in the field "Computer name"
+4) I enter "2017-02-04" in the field "Introduced date"
+5) I enter empty date in the field "Discontinued date"
+6) I choose "IBM" from "Company" dropdown
+7) I press the button "Save this computer"
+Expected results:
+ I see a message "Done! Computer <computerNewName> has been updated"
+ I filter by "Computer Updated 1"
+ I see a row Computer Updated 1   |  2017-02-04      |  - |IBM|    in the table with computers
+
+Test 4	
+Delete Computer
+Prerequisite: Application is open
+"Computer Updated 1" is created
+1) I filter by "Computer Updated 1"
+2) I click on "Computer Updated 1"
+3) I press the button "Delete this computer"
+4) I see a message "Done! Computer has been deleted"
+5) I filter by "Computer Updated 1"
+Expected results:
+ I see a title message "No computers found"
+
+Test 5
+Create a computer with an empty name
+Prerequisite: Application is open
+1) I press the button "Add a new computer"
+2) I don't enter anything in the field "Computer name"
+3) I enter "2017-02-11" in the field "Introduced date"
+4) I choose "RCA" from "Company" dropdown
+5) I press the button "Create this computer"
+Expected results:
+ I see an error message 
+
+Test 6	
+Create a computer with Invalid introduced Date
+Prerequisite: Application is open
+1) I press the button "Add a new computer"
+2) I enter "InvalidDate " in the field "Computer name"
+3) I enter "2017-02-45" in the field "Introduced date"
+4) I enter "2017-02-11" in the field "Discontinued date"
+5) I choose "Netronics" from "Company" dropdown
+6) I press the button "Create this computer"
+Expected results:
+ I see an error message 	
+	
+Test 7
+Create a computer with Invalid introduced Date
+Prerequisite: Application is open
+1) I press the button "Add a new computer"
+2) I enter "InvalidDate" in the field "Computer name"
+3) I enter "xxxxxxxxxx" in the field "Introduced date"
+4) I choose "Netronics" from "Company" dropdown
+5) I press the button "Create this computer"
+Expected results:
+	I see an error message 
+
+Test 8
+Create a computer with Invalid Discontinued Date
+Prerequisite: Application is open
+1) I press the button "Add a new computer"
+2) I enter "InvalidDate " in the field "Computer name"
+3) I enter "2019-62-11" in the field "Discontinued date"
+4) I choose "Netronics" from "Company" dropdown
+5) I press the button "Create this computer"
+Expected results:
+	I see an error message
+	
+Test 9
+Create a computer with Invalid introduced Date
+Prerequisite: Application is open
+1) I press the button "Add a new computer"
+2) I enter "InvalidDate" in the field "Computer name"
+3) I enter "2017-12-01" in the field "Introduced date"
+4) I enter "2017" in the field "Discontinued date"
+5) I choose "Netronics" from "Company" dropdown
+6) I press the button "Create this computer"
+Expected results:
+	I see an error message
+	
+Test 10	
+Update a computer with an Empty Computer Name
+Prerequisite: Application is open
+Computer Amiga is created
+1) I filter by "Amiga"
+2) I click on "Amiga"
+3) I don't enter anything in the field "Computer name"
+4) I press the button "Save this computer"
+Expected results:
+	I see an error message 
+
+Test 11
+Edit a computer with invalid Introduced date
+Prerequisite: Application is open
+Computer Amiga is created
+1) I filter by "Amiga"
+2) I click on "Amiga"
+3) I enter "xxxxxxyyyx" in the field "Introduced date"
+4) I press the button "Save this computer"
+Expected results:
+	I see an error message
+
+
+Test 12
+Edit a computer with invalid Discontinued date
+Prerequisite: Application is open
+Computer Amiga is created
+1) I filter by Amiga
+2) I click on Amiga
+3) I enter "2019-62-11 " in the field "Discontinued date"
+4) I press the button "Save this computer"
+Expected results:
+	I see an error message
+
+Test 13	
+Checking pagination
+Prerequisite: Application is open
+There are more than 20 added computers
+1) I click "Next" page
+2) I see 10 computers in the table
+3) I see pagination text "Displaying 11 to 20" 
+4) I click "Previous" page
+5) I see 10 computers in the table
+Expected result:
+I see pagination text "Displaying 1 to 10" 
+
