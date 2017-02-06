@@ -2,8 +2,8 @@
 
 ### Required Software to execute the tests
 * Java: Version Java 1.8
-* Gradle: Version 2.14
-* Browsers: Firefox or chrome
+* Gradle: Version 2
+* Browsers: Firefox or Chrome
 
 ### Running the tests
 

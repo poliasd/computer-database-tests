@@ -10,8 +10,6 @@ repositories {
     mavenCentral()
 }
 
-[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
-
 
 dependencies {
 	testCompile( 
@@ -25,12 +23,14 @@ dependencies {
 
 test {
     useJUnit()
-    systemProperty "cucumber.options", "--tags @Acceptance"
+    systemProperty "cucumber.options", "--tags @Regression"
     systemProperty "BROWSER", "chrome"
     systemProperty "APP_URL", "http://computer-database.herokuapp.com/computers"
     systemProperties System.getProperties()
     ignoreFailures = true
+    testLogging.showStandardStreams = true
 }
+
 
 task cucumber() {
     dependsOn assemble, compileTestJava
@@ -38,9 +38,7 @@ task cucumber() {
         javaexec {
             main = "cucumber.api.cli.Main"
             classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
-            args = ['-f', 'json:target/cucumber.json', '--glue', 'com.polina.ui.tests.steps', 'src/test/ressources', '-t', tagOr, '-t', tagAnd]
+            args = ['--plugin', 'pretty', '--glue', 'com.polina.ui.tests.steps', 'src/test/resources']
         }
     }
 }
-
-
