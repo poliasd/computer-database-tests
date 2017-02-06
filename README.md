@@ -1,8 +1,8 @@
-# Play sample application — Computer database Tests
+# Play sample application â€” Computer database Tests
 
 ### Required Software to execute the tests
 * Java: Version Java 1.8
-* Gradle: Version 2
+* Gradle
 * Browsers: Firefox or Chrome
 
 ### Running the tests
